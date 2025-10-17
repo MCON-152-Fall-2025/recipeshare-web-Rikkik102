@@ -79,7 +79,14 @@ public class RecipeController {
      */
     @PutMapping("/{id}")
     public Recipe updateRecipe(@PathVariable long id, @RequestBody Recipe updatedRecipe) {
-        throw new UnsupportedOperationException("Update recipe not implemented");
+        for (int i = 0; i < recipes.size(); i++) {
+            if (recipes.get(i).getId() == id) {
+                updatedRecipe.setId(recipes.get(i).getId());
+                recipes.set(i,  updatedRecipe);
+                return updatedRecipe;
+            }
+        }
+        return null;
     }
 
     /**
@@ -91,6 +98,12 @@ public class RecipeController {
      */
     @PatchMapping("/{id}")
     public Recipe patchRecipe(@PathVariable long id, @RequestBody Recipe partialRecipe) {
-        throw new UnsupportedOperationException("Update recipe not implemented");
+        for (int i = 0; i < recipes.size(); i++) {
+            if (recipes.get(i).getId() == id) {
+                recipes.set(i,  partialRecipe);
+                return partialRecipe;
+            }
+        }
+        return null;
     }
 }
