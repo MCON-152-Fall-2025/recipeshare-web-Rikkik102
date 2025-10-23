@@ -1,6 +1,6 @@
 package com.mcon152.recipeshare;
 
-public class Recipe {
+public class Recipe { // the model
     private Long id;
     private String title;
     private String description;

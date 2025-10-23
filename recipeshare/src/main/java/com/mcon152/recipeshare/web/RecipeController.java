@@ -22,10 +22,10 @@ public class RecipeController {
      * @return the added recipe with its assigned ID
      */
     @PostMapping
-    public Recipe addRecipe(@RequestBody Recipe recipe) {
+    public Recipe addRecipe(@RequestBody Recipe recipe) { // the controller
         recipe.setId(counter.incrementAndGet());
         recipes.add(recipe);
-        return recipe;
+        return recipe; // the view is the recipe displayed
     }
 
     /**
@@ -36,7 +36,7 @@ public class RecipeController {
     @GetMapping
     public List<Recipe> getAllRecipes() {
         return recipes;
-    }
+    } // controller
 
     /**
      * Retrieves a recipe by its ID.
@@ -45,10 +45,10 @@ public class RecipeController {
      * @return the recipe with the specified ID, or null if not found
      */
     @GetMapping("/{id}")
-    public Recipe getRecipeById(@PathVariable long id) {
+    public Recipe getRecipeById(@PathVariable long id) { // controller
         for (Recipe recipe : recipes) {
             if (recipe.getId() == id) {
-                return recipe;
+                return recipe; // view
             }
         }
         return null;
@@ -61,7 +61,7 @@ public class RecipeController {
      * @return true if the recipe was deleted, false if not found
      */
     @DeleteMapping("/{id}")
-    public boolean deleteRecipe(@PathVariable long id) {
+    public boolean deleteRecipe(@PathVariable long id) { // controller
         for (int i = 0; i < recipes.size(); i++) {
             if (recipes.get(i).getId() == id) {
                 recipes.remove(i);
@@ -78,12 +78,12 @@ public class RecipeController {
      * @return the updated recipe, or null if not found
      */
     @PutMapping("/{id}")
-    public Recipe updateRecipe(@PathVariable long id, @RequestBody Recipe updatedRecipe) {
+    public Recipe updateRecipe(@PathVariable long id, @RequestBody Recipe updatedRecipe) { // controller
         for (int i = 0; i < recipes.size(); i++) {
             if (recipes.get(i).getId() == id) {
                 updatedRecipe.setId(recipes.get(i).getId());
                 recipes.set(i,  updatedRecipe);
-                return updatedRecipe;
+                return updatedRecipe; // view
             }
         }
         return null;
@@ -97,11 +97,11 @@ public class RecipeController {
      * @return the updated recipe, or null if not found
      */
     @PatchMapping("/{id}")
-    public Recipe patchRecipe(@PathVariable long id, @RequestBody Recipe partialRecipe) {
+    public Recipe patchRecipe(@PathVariable long id, @RequestBody Recipe partialRecipe) { // controller
         for (int i = 0; i < recipes.size(); i++) {
             if (recipes.get(i).getId() == id) {
                 recipes.set(i,  partialRecipe);
-                return partialRecipe;
+                return partialRecipe; // view
             }
         }
         return null;
